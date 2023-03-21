@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'f1';
+round: string = '1';
+season: string = new Date().getFullYear().toString();
 }

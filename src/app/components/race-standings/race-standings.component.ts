@@ -9,8 +9,8 @@ import { RaceService } from '../../services/race.service';
 })
 export class RaceStandingsComponent implements OnInit {
   driverStandings: any[] = [];
-  season: number = new Date().getFullYear();
-  round: number = 1;
+  season: number = 2023;
+  round: number = 0;
 
   constructor(private raceService: RaceService, private route: ActivatedRoute) {}
 
@@ -26,5 +26,11 @@ export class RaceStandingsComponent implements OnInit {
     this.raceService.getDriverStandings(this.season, this.round).subscribe((data) => {
       this.driverStandings = data;
     });
+  }
+
+  onFormSubmit(season: string, round: string): void {
+    this.season = Number(season);
+    this.round = Number(round);
+    this.loadDriverStandings();
   }
 }

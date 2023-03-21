@@ -1,24 +1,54 @@
 <div class="container mt-4">
-    <h1 class="mb-4">Driver Standings ({{ season }}, Round {{ round }})</h1>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Position</th>
-          <th>Driver</th>
-          <th>Constructor</th>
-          <th>Points</th>
-          <th>Wins</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let standing of driverStandings">
-          <td>{{ standing.position }}</td>
-          <td>{{ standing.Driver.givenName }} {{ standing.Driver.familyName }}</td>
-          <td>{{ standing.Constructors[0].name }}</td>
-          <td>{{ standing.points }}</td>
-          <td>{{ standing.wins }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <form (ngSubmit)="onFormSubmit(seasonInput.value, roundInput.value)">
+        <div class="row">
+          <div class="col-md-3">
+            <input 
+                type="number" 
+                class="form-control" 
+                placeholder="Season" 
+                #seasonInput 
+                [value]="season"
+                min="1950"
+                max="2023"/>
+          </div>
+          <div class="col-md-3">
+            <input 
+                type="number" 
+                class="form-control" 
+                placeholder="Round" 
+                #roundInput 
+                [value]="round" 
+                min="0"
+                max="3"
+                />
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Load Standings</button>
+          </div>
+        </div>
+      </form>
+    <div *ngIf="driverStandings.length > 0" >
+        <h1 class="mb-4">Driver Standings ({{ season }}, Round {{ round }})</h1>
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>Position</th>
+            <th>Driver</th>
+            <th>Constructor</th>
+            <th>Points</th>
+            <th>Wins</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let standing of driverStandings">
+            <td>{{ standing.position }}</td>
+            <td>{{ standing.Driver.givenName }} {{ standing.Driver.familyName }}</td>
+            <td>{{ standing.Constructors[0].name }}</td>
+            <td>{{ standing.points }}</td>
+            <td>{{ standing.wins }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
   </div>
   
