@@ -6,12 +6,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DriverListComponent } from './components/driver-list/driver-list.component'
 import { HttpClientModule } from '@angular/common/http';
 import { CircuitListComponent } from './components/circuit-list/circuit-list.component';
+import { ConstructorListComponent } from './components/constructor-list/constructor-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DriverListComponent,
-    CircuitListComponent
+    CircuitListComponent,
+    ConstructorListComponent
   ],
   imports: [
     BrowserModule,
