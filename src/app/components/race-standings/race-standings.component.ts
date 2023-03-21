@@ -16,8 +16,8 @@ export class RaceStandingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.season = +params['season'];
-      this.round = +params['round'];
+      this.season = +params['season'] || 2023;
+      this.round = +params['round'] || 1;
       this.loadDriverStandings();
     });
   }

@@ -2,7 +2,7 @@
     <h1 class="mb-4">Formula 1 Drivers ({{ selectedSeason }})</h1>
     <div class="form-group">
       <label for="season">Select Season:</label>
-      <select  [(ngModel)]="selectedSeason" (change)="onSeasonChange(selectedSeason)" class="form-control" id="season">
+      <select  style="background-color: #E0E0E0" [(ngModel)]="selectedSeason" (change)="onSeasonChange(selectedSeason)" class="form-control" id="season">
         <option *ngFor="let year of years" [value]="year">{{ year }}</option>
       </select>
     </div>
