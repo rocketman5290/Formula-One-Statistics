@@ -42,9 +42,99 @@ This is an Angular application that provides various Formula 1 race statistics u
 1. To build the project for production, run the following command: ```bash ng build --prod```
 2. The build artifacts will be stored in the dist/ directory.
 
+## TESTS ADDED FOR YOUR PLEASURE
+
+```css
+56 specs, 0 failures, randomized with seed 13872
+
+### AppComponent
+- should have as title 'f1'
+- should create the app
+- should render navbar
+- should have correct default season value
+- should have correct default round value
+
+### CircuitListComponent
+- should load circuits on init
+- should call service to get circuits when loading circuits
+- should change page and load circuits on page change
+- should create
+
+### AppRoutingModule
+- navigate to "season-drivers" should render SeasonDriversComponent
+- navigate to "**" redirects you to /season-drivers
+- navigate to "" redirects you to /season-drivers
+
+### ConstructorListComponent
+- should create
+- should load constructors on init
+- should change page and load constructors on page change
+- should call service to get constructors when loading constructors
+
+### ConstructorService
+- should be created
+- should fetch constructors with correct parameters
+- DriverService
+- should be created
+- should fetch drivers with correct parameters
+
+### DriverListComponent
+- should change page and load drivers on page change
+- should call service to get drivers when loading drivers
+- should load drivers on init
+- should create
+
+### SeasonRacesComponent
+- should create
+- should call service to get races when loading races
+- should load races on season change
+- should load races on init
+
+### RaceQualifyingComponent
+- should create
+- should load qualifying results on season change
+- should load qualifying results on init
+- should load qualifying results on form submit
+- should call service to get qualifying results when loading results
+
+### RaceStandingsComponent
+- should call service to get driver standings when loading standings
+- should create
+- should load driver standings on init
+- should load driver standings on season change
+- should load driver standings on form submit
+
+### CircuitService
+- should fetch circuits with correct parameters
+- should be created
+
+### RaceStatusCountsComponent
+- should load race status counts on season change
+- should load race status counts on init
+- should create
+- should call service to get race status counts when loading counts
+- should load race status counts on form submit
+
+### RaceService
+- should fetch driver standings with correct parameters
+- should fetch qualifying results with correct parameters
+- should be created
+- should fetch race status counts with correct parameters
+
+### SeasonDriversComponent
+- should load drivers on init
+- should call service to get drivers when loading drivers
+- should load drivers on season change
+- should create
+
+### SeasonService
+- should fetch drivers by season with correct parameters
+- should be created
+- should fetch races by season with correct parameters ```
+
 ## LISCENSE
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+- This project is licensed under the MIT License. See the LICENSE file for details.
 
 GitHub repository URL (`https://github.com/rocketman5290/f1.git`) 
 
