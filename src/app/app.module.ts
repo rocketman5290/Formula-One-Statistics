@@ -10,6 +10,8 @@ import { CircuitListComponent } from './components/circuit-list/circuit-list.com
 import { ConstructorListComponent } from './components/constructor-list/constructor-list.component';
 import { SeasonDriversComponent } from './components/season-drivers/season-drivers.component';
 import { SeasonRacesComponent } from './components/season-races/season-races.component';
+import { RaceQualifyingComponent } from './components/race-qualifying/race-qualifying.component';
+import { RaceStandingsComponent } from './components/race-standings/race-standings.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { SeasonRacesComponent } from './components/season-races/season-races.com
     CircuitListComponent,
     ConstructorListComponent,
     SeasonDriversComponent,
-    SeasonRacesComponent
+    SeasonRacesComponent,
+    RaceQualifyingComponent,
+    RaceStandingsComponent
   ],
   imports: [
     BrowserModule,
