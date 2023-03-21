@@ -53,8 +53,6 @@ describe('RaceService', () => {
     });
   });
 
-  //getDriverStandings
-  //getRaceStatusCounts
   it('should fetch driver standings with correct parameters', () => {
     const season = 2022;
     const round = 1;
