@@ -1,1 +1,24 @@
-<p>race-standings works!</p>
+<div class="container mt-4">
+    <h1 class="mb-4">Driver Standings ({{ season }}, Round {{ round }})</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Driver</th>
+          <th>Constructor</th>
+          <th>Points</th>
+          <th>Wins</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let standing of driverStandings">
+          <td>{{ standing.position }}</td>
+          <td>{{ standing.Driver.givenName }} {{ standing.Driver.familyName }}</td>
+          <td>{{ standing.Constructors[0].name }}</td>
+          <td>{{ standing.points }}</td>
+          <td>{{ standing.wins }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

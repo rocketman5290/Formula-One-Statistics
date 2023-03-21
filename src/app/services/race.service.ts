@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class RaceService {
   private apiUrl = 'https://ergast.com/api/f1';
-  
+
   constructor(private http: HttpClient) { }
 
   getQualifyingResults(season: number, round: number): Observable<any> {
@@ -20,6 +20,31 @@ export class RaceService {
   getDriverStandings(season: number, round: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${season}/${round}/driverStandings.json`).pipe(
       map((response) => response.MRData.StandingsTable.StandingsLists[0].DriverStandings)
+    );
+  }
+
+  getRaceStatusCounts(season: number, round: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${season}/${round}/results.json`).pipe(
+      map((response) => {
+        const results = response.MRData.RaceTable.Races[0].Results;
+        const statusCounts = {
+          Finished: 0,
+          Accident: 0,
+          PlusOneLap: 0,
+        };
+  
+        results.forEach((result: { status: string | string[]; }) => {
+          if (result.status === 'Finished') {
+            statusCounts.Finished++;
+          } else if (result.status.includes('Accident')) {
+            statusCounts.Accident++;
+          } else if (result.status.includes('+1 Lap')) {
+            statusCounts.PlusOneLap++;
+          }
+        });
+  
+        return statusCounts;
+      })
     );
   }
 

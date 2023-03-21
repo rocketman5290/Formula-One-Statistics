@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RaceService } from '../../services/race.service';
+
 @Component({
-  selector: 'app-race-qualifying',
-  templateUrl: './race-qualifying.component.html',
-  styleUrls: ['./race-qualifying.component.css']
+  selector: 'app-race-status-counts',
+  templateUrl: './race-status-counts.component.html',
+  styleUrls: ['./race-status-counts.component.css'],
 })
-export class RaceQualifyingComponent implements OnInit {
-  qualifyingResults: any[] = [];
+export class RaceStatusCountsComponent implements OnInit {
+  statusCounts: any = {};
   season: number = new Date().getFullYear();
   round: number = 1;
 
@@ -17,14 +18,14 @@ export class RaceQualifyingComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.season = +params['season'];
       this.round = +params['round'];
-      this.loadQualifyingResults();
+      this.loadRaceStatusCounts();
     });
   }
 
-  loadQualifyingResults(): void {
-    this.raceService.getQualifyingResults(this.season, this.round).subscribe((data) => {
-      this.qualifyingResults = data;
+  loadRaceStatusCounts(): void {
+    this.raceService.getRaceStatusCounts(this.season, this.round).subscribe((data) => {
+      this.statusCounts = data;
     });
   }
-
 }
+

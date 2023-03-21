@@ -1,1 +1,25 @@
-<p>race-qualifying works!</p>
+<div class="container mt-4">
+    <h1 class="mb-4">Qualifying Results ({{ season }}, Round {{ round }})</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Driver</th>
+          <th>Constructor</th>
+          <th>Q1</th>
+          <th>Q2</th>
+          <th>Q3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of qualifyingResults">
+          <td>{{ result.position }}</td>
+          <td>{{ result.Driver.givenName }} {{ result.Driver.familyName }}</td>
+          <td>{{ result.Constructor.name }}</td>
+          <td>{{ result.Q1 }}</td>
+          <td>{{ result.Q2 }}</td>
+          <td>{{ result.Q3 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

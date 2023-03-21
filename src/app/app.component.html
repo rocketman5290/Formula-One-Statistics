@@ -1,5 +1,43 @@
-<app-driver-list></app-driver-list>
+<!-- <app-driver-list></app-driver-list>
 <app-circuit-list></app-circuit-list>
 <app-constructor-list></app-constructor-list>
 <app-season-drivers></app-season-drivers>
 <app-season-races></app-season-races>
+<app-race-status-counts></app-race-status-counts> -->
+
+<!-- app.component.html -->
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">F1 Stats</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/season-drivers">Season Drivers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/season-races">Season Races</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/race-standings/2023/1">Race Standings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/race-qualifying/2023/1">Race Qualifying</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/driver-list">Driver List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/constructor-list">Constructor List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/circuit-list">Circuit List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/race-status-counts/2023/1">Race Status Counts</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
+  
