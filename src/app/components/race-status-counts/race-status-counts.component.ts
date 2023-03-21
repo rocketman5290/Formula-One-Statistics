@@ -9,15 +9,15 @@ import { RaceService } from '../../services/race.service';
 })
 export class RaceStatusCountsComponent implements OnInit {
   statusCounts: any = {};
-  season: number = new Date().getFullYear();
+  season: number = 2023;
   round: number = 1;
 
   constructor(private raceService: RaceService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.season = +params['season'];
-      this.round = +params['round'];
+      this.season = +params['season'] || 2023
+      this.round = +params['round'] || 1;
       this.loadRaceStatusCounts();
     });
   }
@@ -26,6 +26,18 @@ export class RaceStatusCountsComponent implements OnInit {
     this.raceService.getRaceStatusCounts(this.season, this.round).subscribe((data) => {
       this.statusCounts = data;
     });
+  }
+
+  onFormSubmit(season: string, round: string): void {
+    this.season = Number(season);
+    this.round = Number(round);
+    this.loadRaceStatusCounts();
+  }
+
+  onSeasonChange(season: string, round: string): void {
+    this.season = Number(season);
+    this.round = Number(round);
+    this.loadRaceStatusCounts();
   }
 }
 
