@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SeasonService } from '../../services/season.service';
 
+
 @Component({
   selector: 'app-season-drivers',
   templateUrl: './season-drivers.component.html',
