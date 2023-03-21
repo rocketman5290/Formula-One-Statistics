@@ -7,13 +7,17 @@ import { DriverListComponent } from './components/driver-list/driver-list.compon
 import { HttpClientModule } from '@angular/common/http';
 import { CircuitListComponent } from './components/circuit-list/circuit-list.component';
 import { ConstructorListComponent } from './components/constructor-list/constructor-list.component';
+import { SeasonDriversComponent } from './components/season-drivers/season-drivers.component';
+import { SeasonRacesComponent } from './components/season-races/season-races.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DriverListComponent,
     CircuitListComponent,
-    ConstructorListComponent
+    ConstructorListComponent,
+    SeasonDriversComponent,
+    SeasonRacesComponent
   ],
   imports: [
     BrowserModule,
