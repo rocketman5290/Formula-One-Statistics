@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RaceService } from '../../services/race.service';
-
+import { catchError } from 'rxjs';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-race-status-counts',
   templateUrl: './race-status-counts.component.html',
@@ -11,6 +12,7 @@ export class RaceStatusCountsComponent implements OnInit {
   statusCounts: any = {};
   season: number = 2023;
   round: number = 1;
+  errorMessage: string | null = null;
 
   constructor(private raceService: RaceService, private route: ActivatedRoute) {}
 
@@ -23,7 +25,16 @@ export class RaceStatusCountsComponent implements OnInit {
   }
 
   loadRaceStatusCounts(): void {
-    this.raceService.getRaceStatusCounts(this.season, this.round).subscribe((data) => {
+    this.raceService
+    .getRaceStatusCounts(this.season, this.round)
+    .pipe(
+      catchError((err) => {
+        console.error("Error loading race status counts: ", err);
+        this.errorMessage = "An error occurred while loading race status counts. Please try again later.";
+        return of({ statusCounts: [], total: 0 });
+      })
+    )
+    .subscribe((data) => {
       this.statusCounts = data;
     });
   }
