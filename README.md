@@ -1,5 +1,6 @@
-# F1
-# F1 Race Statistics
+# Formula-One-Statistics
+
+## (an Angular app)
 
 This is an Angular application that provides various Formula 1 race statistics using the Ergast Developer API.
 
