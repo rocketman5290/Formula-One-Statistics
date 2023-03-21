@@ -1,31 +1,39 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'f1'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('f1');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('f1 app is running!');
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render navbar with correct links', () => {
+    const compiled = fixture.nativeElement;
+    const navLinks = compiled.querySelectorAll('.nav-link');
+
+    expect(navLinks[0].getAttribute('routerLink')).toEqual('/season-drivers');
+    expect(navLinks[1].getAttribute('routerLink')).toEqual('/season-races');
+    expect(navLinks[2].getAttribute('routerLink')).toEqual('/race-standings/${season}/${round}');
+    expect(navLinks[3].getAttribute('routerLink')).toEqual('/race-qualifying/${season}/${round}');
+    expect(navLinks[4].getAttribute('routerLink')).toEqual('/driver-list');
+    expect(navLinks[5].getAttribute('routerLink')).toEqual('/constructor-list');
+    expect(navLinks[6].getAttribute('routerLink')).toEqual('/circuit-list');
+    expect(navLinks[7].getAttribute('routerLink')).toEqual('/race-status-counts/${season}/${round}');
   });
 });
