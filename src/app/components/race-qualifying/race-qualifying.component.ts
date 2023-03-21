@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RaceService } from '../../services/race.service';
+import { catchError } from 'rxjs';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-race-qualifying',
   templateUrl: './race-qualifying.component.html',
@@ -10,6 +12,7 @@ export class RaceQualifyingComponent implements OnInit {
   qualifyingResults: any[] = [];
   season: number = 2023;
   round: number = 1;
+  errorMessage: string | null = null;
 
   constructor(private raceService: RaceService, private route: ActivatedRoute) {}
 
@@ -22,7 +25,16 @@ export class RaceQualifyingComponent implements OnInit {
   }
 
   loadQualifyingResults(): void {
-    this.raceService.getQualifyingResults(this.season, this.round).subscribe((data) => {
+    this.raceService
+    .getQualifyingResults(this.season, this.round)
+    .pipe(
+      catchError((err) => {
+        console.error("Error loading qualifying results: ", err);
+        this.errorMessage = "An error occurred while loading qualifying results. Please try again later.";
+        return of({ qualifyingResults: [], total: 0 });
+      })
+    )
+    .subscribe((data) => {
       this.qualifyingResults = data;
     });
   }

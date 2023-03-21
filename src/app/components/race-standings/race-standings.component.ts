@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RaceService } from '../../services/race.service';
+import { catchError } from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-race-standings',
@@ -11,8 +13,9 @@ export class RaceStandingsComponent implements OnInit {
   driverStandings: any[] = [];
   season = 2023;
   round = 0;
+  errorMessage: string | null = null;
 
-  constructor(private raceService: RaceService, private route: ActivatedRoute) {}
+  constructor( private raceService: RaceService, private route: ActivatedRoute ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -23,7 +26,16 @@ export class RaceStandingsComponent implements OnInit {
   }
 
   loadDriverStandings(): void {
-    this.raceService.getDriverStandings(this.season, this.round).subscribe((data) => {
+    this.raceService
+    .getDriverStandings(this.season, this.round)
+    .pipe(
+      catchError((err) => {
+        console.error('Error loading driver standings: ', err);
+        this.errorMessage = 'An error occurred while loading driver standings. Please try again later or pick a differnt year/season.';
+        return of({ driverStandings: [], total: 0 });
+      })
+    )
+    .subscribe((data) => {
       this.driverStandings = data;
     });
   }

@@ -19,7 +19,20 @@ export class RaceService {
 
   getDriverStandings(season: number, round: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${season}/${round}/driverStandings.json`).pipe(
-      map((response) => response.MRData.StandingsTable.StandingsLists[0].DriverStandings)
+      map((response) => {
+        if (
+          response &&
+          response.MRData &&
+          response.MRData.StandingsTable &&
+          response.MRData.StandingsTable.StandingsLists &&
+          response.MRData.StandingsTable.StandingsLists[0]
+        ) {
+          return response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+        } else {
+          console.error('Unexpected API response:', response);
+          return [];
+        }
+      })
     );
   }
 
