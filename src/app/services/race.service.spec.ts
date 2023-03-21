@@ -53,6 +53,68 @@ describe('RaceService', () => {
     });
   });
 
-  //TODO: getDriverStandings
-  //TODO: getRaceStatusCounts
+  //getDriverStandings
+  //getRaceStatusCounts
+  it('should fetch driver standings with correct parameters', () => {
+    const season = 2022;
+    const round = 1;
+    const mockDriverStandings = [
+      {
+        position: '1',
+        Driver: { givenName: 'Test', familyName: 'Driver' },
+        Constructors: [{ name: 'Test Constructor' }],
+        points: '25',
+        wins: '1',
+      },
+    ];
+  
+    service.getDriverStandings(season, round).subscribe((data) => {
+      expect(data).toEqual(mockDriverStandings);
+    });
+  
+    const req = httpMock.expectOne(
+      `https://ergast.com/api/f1/${season}/${round}/driverStandings.json`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush({
+      MRData: {
+        StandingsTable: {
+          StandingsLists: [{ DriverStandings: mockDriverStandings }],
+        },
+      },
+    });
+  });
+  
+  it('should fetch race status counts with correct parameters', () => {
+    const season = 2022;
+    const round = 1;
+    const mockRaceResults = [
+      { status: 'Finished' },
+      { status: 'Finished' },
+      { status: 'Accident' },
+      { status: '+1 Lap' },
+    ];
+  
+    const expectedResult = {
+      Finished: 2,
+      Accident: 1,
+      PlusOneLap: 1,
+    };
+  
+    service.getRaceStatusCounts(season, round).subscribe((data) => {
+      expect(data).toEqual(expectedResult);
+    });
+  
+    const req = httpMock.expectOne(
+      `https://ergast.com/api/f1/${season}/${round}/results.json`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush({
+      MRData: {
+        RaceTable: {
+          Races: [{ Results: mockRaceResults }],
+        },
+      },
+    });
+  });
 });
