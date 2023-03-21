@@ -14,7 +14,7 @@ export class SeasonDriversComponent {
   constructor(private seasonService: SeasonService) {}
 
   ngOnInit(): void {
-    this.years = Array.from({ length: 72 }, (_, i) => 1950 + i);
+    this.years = [].constructor(72).fill(0).map((_: any, i: number) => 1950 + i)
     this.loadDrivers();
   }
 
@@ -22,7 +22,7 @@ export class SeasonDriversComponent {
     this.seasonService
       .getDriversBySeason(this.selectedSeason)
       .subscribe((data) => {
-        this.drivers = data;
+        this.drivers = data.drivers;
       });
   }
 
