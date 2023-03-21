@@ -19,5 +19,10 @@ export class SeasonService {
       );
   }
 
-  
+  getRacesBySeason(season: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${season}.json`).pipe(
+      map((response) => response.MRData.RaceTable.Races)
+    );
+  }
+
 }
