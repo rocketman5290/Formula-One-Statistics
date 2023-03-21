@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DriverListComponent } from './components/driver-list/driver-list.component'
 import { HttpClientModule } from '@angular/common/http';
+import { CircuitListComponent } from './components/circuit-list/circuit-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DriverListComponent
+    DriverListComponent,
+    CircuitListComponent
   ],
   imports: [
     BrowserModule,

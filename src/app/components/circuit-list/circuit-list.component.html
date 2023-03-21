@@ -1,0 +1,26 @@
+<div class="container mt-4">
+    <h1 class="mb-4">Formula 1 Circuits</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Circuit Name</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let circuit of circuits">
+          <td>{{ circuit.circuitName }}</td>
+          <td>{{ circuit.Location.locality }}, {{ circuit.Location.country }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ngb-pagination
+    [collectionSize]="total"
+    [(page)]="currentPage"
+    [pageSize]="itemsPerPage"
+    (pageChange)="onPageChange($event)"
+    [maxSize]="5"
+    [rotate]="true"
+    [boundaryLinks]="true"
+  ></ngb-pagination>
+</div>
