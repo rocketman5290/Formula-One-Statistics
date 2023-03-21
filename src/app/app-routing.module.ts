@@ -10,7 +10,7 @@ import { DriverListComponent } from './components/driver-list/driver-list.compon
 import { ConstructorListComponent } from './components/constructor-list/constructor-list.component';
 import { CircuitListComponent } from './components/circuit-list/circuit-list.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'season-drivers',
     component: SeasonDriversComponent,
@@ -59,9 +59,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-
-
-
-
-
