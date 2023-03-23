@@ -16,17 +16,17 @@ export class SeasonService {
       .pipe(
         map((response) => {
           if (
-            response &&
-            response.MRData &&
-            response.MRData.DriverTable &&
-            response.MRData.DriverTable.Drivers
-          ) {
+              response &&
+              response.MRData &&
+              response.MRData.DriverTable &&
+              response.MRData.DriverTable.Drivers
+            ) {
             return {
               drivers: response.MRData.DriverTable.Drivers
             };
           } else {
-            console.error('Unexpected API response:', response);
-            return { drivers: [] };
+              console.error('Unexpected API response:', response);
+              return { drivers: [] };
           }
         }),
         catchError((error) => {
@@ -40,15 +40,15 @@ export class SeasonService {
     return this.http.get<any>(`${this.apiUrl}/${season}.json`).pipe(
       map((response) => {
         if (
-          response &&
-          response.MRData &&
-          response.MRData.RaceTable &&
-          response.MRData.RaceTable.Races
+            response &&
+            response.MRData &&
+            response.MRData.RaceTable &&
+            response.MRData.RaceTable.Races
         ) {
-          return response.MRData.RaceTable.Races;
+            return response.MRData.RaceTable.Races;
         } else {
-          console.error('Unexpected API response:', response);
-          return [];
+            console.error('Unexpected API response:', response);
+            return [];
         }
       }),
       catchError((error) => {
